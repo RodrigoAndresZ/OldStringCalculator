@@ -1,9 +1,9 @@
 {
-    "name": "deg540/php-testing-boilerplate",
-    "description": "Php testing boilerplate",
+    "name": "rodrigoandres/katastringcalculator",
+    "description": "Php testing StringCalculator",
     "type": "project",
     "require": {
-        "php": "^8"
+        "php": "^7.4"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.3.10"
@@ -12,12 +12,12 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Deg540\\PHPTestingBoilerplate\\": "src/"
+            "RodrigoAndres\\KataStringCalculator\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Deg540\\PHPTestingBoilerplate\\Test\\": "tests/"
+            "RodrigoAndres\\KataStringCalculator\\Test\\": "tests/"
         }
     },
     "config": {
