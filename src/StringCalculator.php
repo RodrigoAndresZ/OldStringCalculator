@@ -6,8 +6,7 @@ use phpDocumentor\Reflection\Types\Float_;
 
 class StringCalculator
 {
-    function add(String $number): String
-    {
+    function add(String $number): String{
         if(empty($number))
             return "0";
         else{
@@ -18,18 +17,30 @@ class StringCalculator
                     return "Number expected but not found";
             }
             else {
+                $separator = ",' or '/n";
                 $pattern = "/[\n,]+/";
                 if(!substr_compare($number, ",", -1) || !substr_compare($number, "\n", -1))
                     return "Number expected but not found";
             }
-            if(!substr_compare($number, ",", -1) || !substr_compare($number, "\n", -1))
-                return "Number expected but not found";
             $listOfNumbers=preg_split($pattern,$number);
-            $resultAdd = 0.0;
+            $resultAddNumber = 0.0;
+            $resultInvalidSeparator = "";
+            $counterForDifferentSeparator = 1;
             foreach($listOfNumbers as $oneNumber){
-                $resultAdd += (float)$oneNumber;
+                if ($counterForDifferentSeparator ==1 && !substr_compare($number, "//", 0, 2))
+                    $counterForDifferentSeparator--;
+                elseif(!is_numeric($oneNumber)){
+                    for($i = 0; $i < strlen($oneNumber); $i++){
+                        if(!is_numeric(substr($oneNumber, $i, 1)) && strcmp(substr($oneNumber, $i, 1), ".")){
+                            $resultInvalidSeparator .= substr($oneNumber, $i, 1);
+                        }
+                    }
+                    return "'" .$separator .  "' expected but '" . $resultInvalidSeparator . "' found at position " . $counterForDifferentSeparator;
+                }
+                $resultAddNumber += (float)$oneNumber;
+                $counterForDifferentSeparator++;
             }
-            return (string)$resultAdd;
+            return (string)$resultAddNumber;
 
         }
 
