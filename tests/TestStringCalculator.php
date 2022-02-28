@@ -85,6 +85,17 @@ class TestStringCalculator extends TestCase
 
         $this->assertEquals(6, $result);
     }
+    /**
+     * @test
+     */
+    public function lastPositionIsANewSeparator()
+    {
+        $stringcalculator = new StringCalculator();
+
+        $result = $stringcalculator->add("//sum\n1sum1sum1sum3sum");
+
+        $this->assertEquals("Number expected but not found", $result);
+    }
 
 
 }

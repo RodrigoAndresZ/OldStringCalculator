@@ -12,12 +12,16 @@ class StringCalculator
             return "0";
         else{
             if(!substr_compare($number, "//", 0, 2)){
-                $pattern = "/[(". substr($number, 2, strpos($number, "\n") - 2) .")]+/";
-
+                $separator = substr($number, 2, strpos($number, "\n") - 2);
+                $pattern = "/[(". $separator .")]+/";
+                if(!substr_compare($number, $separator, -1 * strlen($separator)))
+                    return "Number expected but not found";
             }
-            else
+            else {
                 $pattern = "/[\n,]+/";
-
+                if(!substr_compare($number, ",", -1) || !substr_compare($number, "\n", -1))
+                    return "Number expected but not found";
+            }
             if(!substr_compare($number, ",", -1) || !substr_compare($number, "\n", -1))
                 return "Number expected but not found";
             $listOfNumbers=preg_split($pattern,$number);
