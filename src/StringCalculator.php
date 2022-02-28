@@ -11,10 +11,14 @@ class StringCalculator
         if(empty($number))
             return "0";
         else{
-            $listOfNumbers=preg_split("/[\n,]+/",$number);
+            $pattern = "/[\n,]+/";
+
+            if(!substr_compare($number, ",", -1) || !substr_compare($number, "\n", -1))
+                return "Number expected but not found";
+            $listOfNumbers=preg_split($pattern,$number);
             $resultAdd = 0.0;
             foreach($listOfNumbers as $oneNumber){
-                $resultAdd += $oneNumber;
+                $resultAdd += (float)$oneNumber;
             }
             return (string)$resultAdd;
 

@@ -63,6 +63,17 @@ class TestStringCalculator extends TestCase
 
         $this->assertEquals(13, $result);
     }
+    /**
+     * @test
+     */
+    public function lastPositionIsNotANumber()
+    {
+        $stringcalculator = new StringCalculator();
+
+        $result = $stringcalculator->add("1\n1,1,1,1\n1,1,1,1\n1\n1,1,1\n");
+
+        $this->assertEquals("Number expected but not found", $result);
+    }
 
 
 }
