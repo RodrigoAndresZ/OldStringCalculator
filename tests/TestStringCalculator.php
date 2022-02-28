@@ -41,7 +41,17 @@ class TestStringCalculator extends TestCase
 
         $this->assertEquals(2, $result);
     }
+    /**
+     * @test
+     */
+    public function manyNumbersReturnAdd()
+    {
+        $stringcalculator = new StringCalculator();
 
+        $result = $stringcalculator->add("1,1,1,1,1,1,1,1,1,1,1,1,1");
+
+        $this->assertEquals(13, $result);
+    }
 
 
 }

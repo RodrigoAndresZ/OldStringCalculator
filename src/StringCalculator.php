@@ -12,11 +12,12 @@ class StringCalculator
             return "0";
         else{
             $listOfNumbers=explode(',',$number);
-            $result = 0.0;
+            $resultAdd = 0.0;
             foreach($listOfNumbers as $oneNumber){
-                $result += $oneNumber;
+                $resultAdd += $oneNumber;
             }
-            return (string)$result;
+            return (string)$resultAdd;
+
         }
 
 
