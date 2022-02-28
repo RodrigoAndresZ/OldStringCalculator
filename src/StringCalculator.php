@@ -16,10 +16,11 @@ class StringCalculator
             foreach($listOfNumbers as $oneNumber){
                 $result += $oneNumber;
             }
+            return (string)$result;
         }
 
 
-        return (string)$result;
+
     }
 
 
