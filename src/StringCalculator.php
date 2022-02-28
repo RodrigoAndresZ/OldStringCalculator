@@ -11,7 +11,7 @@ class StringCalculator
         if(empty($number))
             return "0";
         else{
-            $listOfNumbers=explode(',',$number);
+            $listOfNumbers=preg_split("/[\n,]+/",$number);
             $resultAdd = 0.0;
             foreach($listOfNumbers as $oneNumber){
                 $resultAdd += $oneNumber;

@@ -52,6 +52,17 @@ class TestStringCalculator extends TestCase
 
         $this->assertEquals(13, $result);
     }
+    /**
+     * @test
+     */
+    public function manyNumbersReturnAddWithNewLineAndComma()
+    {
+        $stringcalculator = new StringCalculator();
+
+        $result = $stringcalculator->add("1\n1,1,1,1\n1,1,1,1\n1\n1,1,1");
+
+        $this->assertEquals(13, $result);
+    }
 
 
 }
