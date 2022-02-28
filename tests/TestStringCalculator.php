@@ -72,7 +72,7 @@ class TestStringCalculator extends TestCase
 
         $result = $stringcalculator->add("1\n1,1,1,1\n1,1,1,1\n1\n1,1,1\n");
 
-        $this->assertEquals("Number expected but not found", $result);
+        $this->assertEquals("Number expected but not found\n", $result);
     }
     /**
      * @test
@@ -94,7 +94,7 @@ class TestStringCalculator extends TestCase
 
         $result = $stringcalculator->add("//sum\n1sum1sum1sum3sum");
 
-        $this->assertEquals("Number expected but not found", $result);
+        $this->assertEquals("Number expected but not found\n", $result);
     }
     /**
      * @test
@@ -105,7 +105,7 @@ class TestStringCalculator extends TestCase
 
         $result = $stringcalculator->add("1,1,1sum2\n3");
 
-        $this->assertEquals("',' or '/n' expected but 'sum' found at position 3", $result);
+        $this->assertEquals("',' or '/n' expected but 'sum' found at position 3\n", $result);
     }
     /**
      * @test
@@ -116,7 +116,7 @@ class TestStringCalculator extends TestCase
 
         $result = $stringcalculator->add("//+\n1+1+1sum3+1");
 
-        $this->assertEquals("'+' expected but 'sum' found at position 3", $result);
+        $this->assertEquals("'+' expected but 'sum' found at position 3\n", $result);
     }
     /**
      * @test
@@ -128,6 +128,17 @@ class TestStringCalculator extends TestCase
         $result = $stringcalculator->add("//+\n-2+1+1+-1+1");
 
         $this->assertEquals("Negative not allowed: -2, -1", $result);
+    }
+    /**
+     * @test
+     */
+    public function multipleErrorsMultipleStrings()
+    {
+        $stringcalculator = new StringCalculator();
+
+        $result = $stringcalculator->add("//+\n-2+1sum1+-1+1,1+-4");
+
+        $this->assertEquals("'+' expected but 'sum' found at position 2\n'+' expected but ',' found at position 4\nNegative not allowed: -2, -1, -4", $result);
     }
 
 
