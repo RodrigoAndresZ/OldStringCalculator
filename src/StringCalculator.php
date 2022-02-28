@@ -11,7 +11,12 @@ class StringCalculator
         if(empty($number))
             return "0";
         else{
-            $pattern = "/[\n,]+/";
+            if(!substr_compare($number, "//", 0, 2)){
+                $pattern = "/[(". substr($number, 2, strpos($number, "\n") - 2) .")]+/";
+
+            }
+            else
+                $pattern = "/[\n,]+/";
 
             if(!substr_compare($number, ",", -1) || !substr_compare($number, "\n", -1))
                 return "Number expected but not found";
