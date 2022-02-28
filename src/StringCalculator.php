@@ -28,6 +28,7 @@ class StringCalculator
             $resultAddNumber = 0.0;
             $resultInvalidSeparator = "";
             $counterForDifferentSeparator = 1;
+            $errorWithNegativeNumbers = "Negative not allowed: ";
             foreach($listOfNumbers as $oneNumber){
                 if(!is_numeric($oneNumber)){
                     for($i = 0; $i < strlen($oneNumber); $i++){
@@ -37,9 +38,13 @@ class StringCalculator
                     }
                     return "'" .$separator .  "' expected but '" . $resultInvalidSeparator . "' found at position " . $counterForDifferentSeparator;
                 }
+                elseif($oneNumber < 0)
+                    $errorWithNegativeNumbers .= $oneNumber . ", ";
                 $resultAddNumber += (float)$oneNumber;
                 $counterForDifferentSeparator++;
             }
+            if(strcmp($errorWithNegativeNumbers, "Negative not allowed: "))
+                return substr($errorWithNegativeNumbers, 0, -2);
             return (string)$resultAddNumber;
 
         }

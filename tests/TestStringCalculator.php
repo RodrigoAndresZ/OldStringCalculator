@@ -103,7 +103,7 @@ class TestStringCalculator extends TestCase
     {
         $stringcalculator = new StringCalculator();
 
-        $result = $stringcalculator->add("1,1,1sum2\n3");//+\n1+1+1sum3+1
+        $result = $stringcalculator->add("1,1,1sum2\n3");
 
         $this->assertEquals("',' or '/n' expected but 'sum' found at position 3", $result);
     }
@@ -114,9 +114,20 @@ class TestStringCalculator extends TestCase
     {
         $stringcalculator = new StringCalculator();
 
-        $result = $stringcalculator->add("//+\n1+1+1sum3+1");//+\n1+1+1sum3+1
+        $result = $stringcalculator->add("//+\n1+1+1sum3+1");
 
         $this->assertEquals("'+' expected but 'sum' found at position 3", $result);
+    }
+    /**
+     * @test
+     */
+    public function invalidMessageWhenThereIsNegativeNumbers()
+    {
+        $stringcalculator = new StringCalculator();
+
+        $result = $stringcalculator->add("//+\n-2+1+1+-1+1");
+
+        $this->assertEquals("Negative not allowed: -2, -1", $result);
     }
 
 
