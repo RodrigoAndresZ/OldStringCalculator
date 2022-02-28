@@ -107,6 +107,17 @@ class TestStringCalculator extends TestCase
 
         $this->assertEquals("',' or '/n' expected but 'sum' found at position 3", $result);
     }
+    /**
+     * @test
+     */
+    public function invalidMessageWhenThereIsADifferentOperatorChangingTheSeparator()
+    {
+        $stringcalculator = new StringCalculator();
+
+        $result = $stringcalculator->add("//+\n1+1+1sum3+1");//+\n1+1+1sum3+1
+
+        $this->assertEquals("'+' expected but 'sum' found at position 3", $result);
+    }
 
 
 }

@@ -15,21 +15,21 @@ class StringCalculator
                 $pattern = "/[(". $separator .")]+/";
                 if(!substr_compare($number, $separator, -1 * strlen($separator)))
                     return "Number expected but not found";
+                $listOfNumbers=preg_split($pattern,substr($number, strlen($separator) + 3));
             }
             else {
                 $separator = ",' or '/n";
                 $pattern = "/[\n,]+/";
                 if(!substr_compare($number, ",", -1) || !substr_compare($number, "\n", -1))
                     return "Number expected but not found";
+                $listOfNumbers=preg_split($pattern,$number);
             }
-            $listOfNumbers=preg_split($pattern,$number);
+
             $resultAddNumber = 0.0;
             $resultInvalidSeparator = "";
             $counterForDifferentSeparator = 1;
             foreach($listOfNumbers as $oneNumber){
-                if ($counterForDifferentSeparator ==1 && !substr_compare($number, "//", 0, 2))
-                    $counterForDifferentSeparator--;
-                elseif(!is_numeric($oneNumber)){
+                if(!is_numeric($oneNumber)){
                     for($i = 0; $i < strlen($oneNumber); $i++){
                         if(!is_numeric(substr($oneNumber, $i, 1)) && strcmp(substr($oneNumber, $i, 1), ".")){
                             $resultInvalidSeparator .= substr($oneNumber, $i, 1);
